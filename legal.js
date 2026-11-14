@@ -8,8 +8,8 @@
   const buttons = document.querySelectorAll('[data-legal-lang]');
 
   const NAV_LABELS = {
-    pt: { 'index.html': 'Início', 'privacy.html': 'Privacidade', 'terms.html': 'Termos de Uso' },
-    en: { 'index.html': 'Home', 'privacy.html': 'Privacy', 'terms.html': 'Terms of Use' },
+    pt: { '/': 'Início', '/privacy': 'Privacidade', '/terms': 'Termos de Uso' },
+    en: { '/': 'Home', '/privacy': 'Privacy', '/terms': 'Terms of Use' },
   };
 
   function apply(lang) {

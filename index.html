@@ -3,481 +3,192 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
-  <title>BrainGym · Todo dia importa. Cada dia conta.</title>
-  <meta name="description" content="Acompanhe sequências, ganhe XP, suba de nível com amigos. Check-in com foto, streaks diárias e badges. Disciplina que vira hábito." />
-
-  <meta property="og:title" content="BrainGym · Todo dia importa. Cada dia conta." />
-  <meta property="og:description" content="Acompanhe sequências, ganhe XP, suba de nível com amigos." />
+  <meta name="theme-color" content="#0B0D10" />
+  <title>BrainGym · Cada dia conta.</title>
+  <meta name="description" content="Estude, faça check-in com foto e veja sua sequência crescer. Desafios com amigos, feed de quem está estudando agora e seu progresso dia a dia." />
+  <meta property="og:title" content="BrainGym · Cada dia conta." />
+  <meta property="og:description" content="Estude, faça check-in com foto e veja sua sequência crescer." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/brand-logo.png" />
+  <meta property="og:image" content="/assets/brand/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" type="image/png" href="assets/brand-logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=20" />
 </head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"></div>
-  <div class="ambient" aria-hidden="true"></div>
-
-  <!-- ============ ICON SPRITE ============ -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="i-camera" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 8a2 2 0 0 1 2-2h2.5l1.6-2h5.8l1.6 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-      <symbol id="i-flame" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 2c.5 2.5 3 4.5 3 8a4.5 4.5 0 0 1-9 0c0-1.5.5-2.7 1.4-3.7.7-.8 1-1.9.4-3 1.9.5 2.7 1.7 2.7 3 .6-1.4 1-3 1.5-4.3z"/><path fill="currentColor" opacity=".55" d="M9 14a3 3 0 0 0 6 0c0-.6-.1-1.1-.3-1.6A6 6 0 0 1 18 16a6 6 0 0 1-12 0c0-1.3.4-2.5 1-3.4.4 1.6 1.7 2.8 3.3 3.2-.7-.5-1.3-1.4-1.3-2.4 0-1.5 1.5-2.5 3-2.5z"/></symbol>
-      <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="m13 3-9 12h7l-1 6 9-12h-7l1-6Z"/></symbol>
-      <symbol id="i-medal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="m8 3 4 7 4-7"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M6 3h4l2 4 2-4h4"/><circle cx="12" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-      <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M4 20h16M6 16V9m5 7V5m5 11v-9"/></symbol>
-      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M3 19c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5"/><circle cx="17" cy="7" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M16 13c2 0 4 1 5 3"/></symbol>
-      <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 1.4c0 1.1-.5 2.3-1.2 3.1-.8.9-2.1 1.5-3.1 1.4-.1-1.1.4-2.3 1.1-3 .8-.9 2.2-1.5 3.2-1.5zM20.5 17.3c-.6 1.3-.8 1.8-1.5 3-1 1.5-2.4 3.5-4.1 3.5-1.5 0-1.9-1-4-1-2.1 0-2.5 1-4.1 1-1.7 0-3-1.7-4-3.3-2.7-4.4-3-9.7.8-12.6 1.2-.9 2.5-1.4 3.8-1.4 1.5 0 2.5 1 3.8 1 1.3 0 2-1 3.8-1 1.4 0 2.9.8 3.9 2.1-3.4 1.9-2.9 6.8.2 7.6-.4 1.2-.6 1.7-.9 2.4z"/></symbol>
-      <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
-      <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M9 4h-3v16h3zm9 0h-3v16h3z"/></symbol>
-      <symbol id="i-note" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M5 4h11l3 3v13H5z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M9 12h6M9 16h6"/></symbol>
-      <symbol id="i-signal" viewBox="0 0 14 10"><path fill="currentColor" d="M1 9h2V5H1v4zm4 0h2V3H5v6zm4 0h2V1H9v8z"/></symbol>
-      <symbol id="i-wifi" viewBox="0 0 14 10"><path fill="currentColor" d="M7 1C4 1 1 3 0 5c1 2 4 4 7 4s6-2 7-4c-1-2-4-4-7-4z"/></symbol>
-      <symbol id="i-battery" viewBox="0 0 22 10"><rect x="0.5" y="0.5" width="18" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1"/><rect x="2" y="2" width="14" height="6" rx="1" fill="currentColor"/><rect x="19.5" y="3" width="2" height="4" rx="1" fill="currentColor"/></symbol>
-      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></symbol>
-      <symbol id="i-wave" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M2 9c2 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".6" d="M2 14c2 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".3" d="M2 19c2 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2"/></symbol>
-      <symbol id="i-sprout" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M12 21V11"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 11c0-3.5 3-6 6-6 0 3.5-2.5 6-6 6z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 14c0-3-2.5-5-5-5 0 3 2 5 5 5z"/></symbol>
-      <symbol id="i-crown" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M3 8l3.5 3L9 5l3 6 3-6 2.5 6L21 8l-2 11H5z"/></symbol>
-      <symbol id="i-skull" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" d="M5 11a7 7 0 0 1 14 0v4l-2 2v3h-3v-2h-4v2H7v-3l-2-2v-4z"/><circle cx="9" cy="12" r="1.4" fill="currentColor"/><circle cx="15" cy="12" r="1.4" fill="currentColor"/></symbol>
-      <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></symbol>
-      <symbol id="i-clap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 13V7a1.5 1.5 0 0 1 3 0v5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12V5a1.5 1.5 0 0 1 3 0v7"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M15 12V6a1.5 1.5 0 0 1 3 0v8c0 4-3 7-6 7s-6-2-6-6V9a1.5 1.5 0 0 1 3 0v3"/></symbol>
-      <symbol id="i-muscle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 14c0-3 2-5 5-5h6c2 0 4 1.5 4 4 0 3-2 5-6 5H8a4 4 0 0 1-4-4z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M14 9V6a3 3 0 0 0-6 0v3"/></symbol>
-      <symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4 4h7c1.5 0 3 .8 3 2v14c0-1.2-1.5-2-3-2H4z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M20 4h-7c-1.5 0-3 .8-3 2v14c0-1.2 1.5-2 3-2h7z"/></symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
-    </defs>
-  </svg>
-
-  <!-- ============ NAV ============ -->
   <header class="nav" data-nav>
-    <a class="nav__brand" href="#top">
-      <img src="assets/brand-logo.png" alt="BrainGym" />
-      <span class="wordmark">BrainGym</span>
+    <a class="brand" href="/" aria-label="BrainGym">
+      <img src="/assets/brand/symbol.svg" alt="" width="34" height="34" />
+      <span>BrainGym</span>
     </a>
-    <nav class="nav__links">
-      <a href="#features" data-i18n="nav.features">Recursos</a>
-      <a href="#badges" data-i18n="nav.badges">Conquistas</a>
-      <a href="#compare" data-i18n="nav.why">Por quê</a>
-      <a href="#download" data-i18n="nav.download">Download</a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#como-funciona" data-i18n="nav.how">Como funciona</a>
+      <a href="#recursos" data-i18n="nav.features">Recursos</a>
+      <a href="#pro" data-i18n="nav.pro">PRO</a>
     </nav>
-    <div class="lang-toggle" role="group" aria-label="Idioma">
-      <button type="button" data-lang="pt" class="is-active">PT</button>
-      <span aria-hidden="true">·</span>
-      <button type="button" data-lang="en">EN</button>
+    <div class="nav__end">
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="pt" class="is-active">PT</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="btn btn--small" href="#baixar" data-i18n="nav.download">Baixar</a>
     </div>
-    <a class="nav__cta" href="#download" data-i18n="nav.cta">Baixar grátis</a>
   </header>
 
-  <main id="top">
-    <!-- ============ HERO ============ -->
+  <main>
+    <!-- Hero -->
     <section class="hero">
-      <div class="hero__grid"></div>
-      <div class="hero__glow"></div>
-      <div class="hero__glow hero__glow--cyan"></div>
-      <div class="hero__glow hero__glow--accent"></div>
-
-      <div class="hero__inner">
-        <div class="hero__copy">
-          <div class="eyebrow fade-up">
-            <span class="live-dot"></span>
-            <span data-i18n="hero.eyebrow">Em breve na App Store</span>
-          </div>
-
-          <h1 class="hero__title wordmark">
-            <span class="line"><span data-text data-i18n="hero.title.l1">TODO DIA</span></span>
-            <span class="line"><span data-text data-i18n="hero.title.l2"><span class="grad">IMPORTA.</span></span></span>
-            <span class="line"><span data-text data-i18n="hero.title.l3">CADA DIA <span class="cyan">CONTA.</span></span></span>
-          </h1>
-
-          <p class="hero__tagline fade-up" data-i18n="hero.tagline">
-            Acompanhe sequências, ganhe XP, suba de nível com amigos. <strong class="wordmark wordmark--inline">BrainGym</strong> transforma cada sessão de estudo em prova real, não só uma marcação.
-          </p>
-
-          <div class="hero__ctas fade-up">
-            <a href="#download" class="btn-store">
-              <svg class="apple"><use href="#i-apple"/></svg>
-              <span class="label"><small data-i18n="hero.cta.small">Baixar na</small><span>App Store</span></span>
-            </a>
-            <a href="#features" class="btn-ghost">
-              <span data-i18n="hero.cta.ghost">Ver como funciona</span>
-              <svg width="16" height="16"><use href="#i-arrow"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__phone-wrap">
-            <div class="phone phone--real">
-              <div class="phone__screen">
-                <img src="assets/screens/login.png" alt="BrainGym · tela de boas-vindas com slogan oficial" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="hero__stats">
-      <div class="stat fade-up">
-        <div class="stat-num primary" data-count="287">0</div>
-        <div class="stat-label" data-i18n="stat.streak">Streak médio (dias)</div>
-      </div>
-      <div class="stat fade-up">
-        <div class="stat-num" data-count="12000">0</div>
-        <div class="stat-label" data-i18n="stat.sessions">Sessões registradas</div>
-      </div>
-      <div class="stat fade-up">
-        <div class="stat-num grad" data-count="42">0</div>
-        <div class="stat-label" data-i18n="stat.badges">Badges para conquistar</div>
-      </div>
-      <div class="stat fade-up">
-        <div class="stat-num cyan" data-count="98" data-suffix="%">0</div>
-        <div class="stat-label" data-i18n="stat.retention">Retenção semanal</div>
-      </div>
-    </div>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track" id="marquee">
-        <div class="marquee__item wordmark" data-i18n="marquee">CHECK-IN DIÁRIO <span class="sep">/</span> STREAK <span class="sep">/</span> XP &amp; NÍVEIS <span class="sep">/</span> FEED SOCIAL <span class="sep">/</span> BADGES <span class="sep">/</span> WIDGETS <span class="sep">/</span> CHECK-IN DIÁRIO <span class="sep">/</span> STREAK <span class="sep">/</span></div>
-        <div class="marquee__item wordmark" data-i18n="marquee">CHECK-IN DIÁRIO <span class="sep">/</span> STREAK <span class="sep">/</span> XP &amp; NÍVEIS <span class="sep">/</span> FEED SOCIAL <span class="sep">/</span> BADGES <span class="sep">/</span> WIDGETS <span class="sep">/</span> CHECK-IN DIÁRIO <span class="sep">/</span> STREAK <span class="sep">/</span></div>
-      </div>
-    </div>
-
-    <!-- ============ FEATURES (PINNED) ============ -->
-    <section class="section pinned" id="features">
-      <div class="section__eyebrow"><span class="num">01</span> <span data-i18n="features.eyebrow">Como funciona</span></div>
-      <h2 class="section__title wordmark" data-i18n="features.title">
-        Quatro hábitos.<br>
-        <span class="outline">Um app só.</span>
-      </h2>
-
-      <div class="pinned__wrap" id="pinnedWrap">
-
-        <!-- RAIL: vertical progress nav (clickable) -->
-        <nav class="pinned__rail" id="pinnedRail" aria-label="Navegação dos hábitos">
-          <button type="button" class="pinned__rail-item is-active" data-target="0">
-            <span class="num">01</span>
-            <span class="label" data-i18n="rail.01">Inicial</span>
-          </button>
-          <button type="button" class="pinned__rail-item" data-target="1">
-            <span class="num">02</span>
-            <span class="label" data-i18n="rail.02">Desafios</span>
-          </button>
-          <button type="button" class="pinned__rail-item" data-target="2">
-            <span class="num">03</span>
-            <span class="label" data-i18n="rail.03">Feed</span>
-          </button>
-          <button type="button" class="pinned__rail-item" data-target="3">
-            <span class="num">04</span>
-            <span class="label" data-i18n="rail.04">Stats</span>
-          </button>
-        </nav>
-
-        <!-- COPY -->
-        <div class="pinned__copy" id="pinnedCopy">
-          <div class="pinned__feat is-active" data-idx="0">
-            <div class="pinned__bignum wordmark" aria-hidden="true">01</div>
-            <div class="pinned__pill" data-i18n="feat.01.pill">Hábito 01 · Inicial</div>
-            <h3 class="pinned__title wordmark" data-i18n="feat.01.title">Sua tela inicial,<br>seu hábito.</h3>
-            <p class="pinned__desc" data-i18n="feat.01.desc">Streak diária, sessões de hoje, tempo estudado e seu recorde, tudo na primeira tela. Suas matérias listadas, prontas pra um check-in em segundos.</p>
-            <ul class="pinned__list">
-              <li data-i18n="feat.01.b1">Saudação personalizada + nível e XP</li>
-              <li data-i18n="feat.01.b2">Card de streak com indicador de risco</li>
-              <li data-i18n="feat.01.b3">Atalhos: Minhas Matérias e Calendário</li>
-              <li data-i18n="feat.01.b4">Widget de estatísticas semanais embutido</li>
-            </ul>
-          </div>
-
-          <div class="pinned__feat" data-idx="1">
-            <div class="pinned__bignum wordmark" aria-hidden="true">02</div>
-            <div class="pinned__pill" data-i18n="feat.02.pill">Hábito 02 · Desafios</div>
-            <h3 class="pinned__title wordmark" data-i18n="feat.02.title">Desafios<br>em grupo.</h3>
-            <p class="pinned__desc" data-i18n="feat.02.desc">Crie um desafio, escolha matérias, define datas e modo de ranking. Convide amigos e veja quem aparece. Disciplina vira competição saudável.</p>
-            <ul class="pinned__list">
-              <li data-i18n="feat.02.b1">Período personalizado: semana, mês, sprint</li>
-              <li data-i18n="feat.02.b2">Ranking por check-ins, tempo ou XP</li>
-              <li data-i18n="feat.02.b3">Meta semanal por participante</li>
-              <li data-i18n="feat.02.b4">Acompanhamento ao vivo do leaderboard</li>
-            </ul>
-          </div>
-
-          <div class="pinned__feat" data-idx="2">
-            <div class="pinned__bignum wordmark" aria-hidden="true">03</div>
-            <div class="pinned__pill" data-i18n="feat.03.pill">Hábito 03 · Feed</div>
-            <h3 class="pinned__title wordmark" data-i18n="feat.03.title">Feed que<br>te puxa pra cima.</h3>
-            <p class="pinned__desc" data-i18n="feat.03.desc">Cada sessão dos amigos vira um post. Reaja, comente, comemore. Ver outras pessoas estudando é o empurrão que faltava pra você abrir o app de novo.</p>
-            <ul class="pinned__list">
-              <li data-i18n="feat.03.b1">Timeline cronológica de check-ins</li>
-              <li data-i18n="feat.03.b2">Reações rápidas em cada post</li>
-              <li data-i18n="feat.03.b3">Foto de prova + matéria + tempo de sessão</li>
-              <li data-i18n="feat.03.b4">Filtros: hoje, amigos, todos</li>
-            </ul>
-          </div>
-
-          <div class="pinned__feat" data-idx="3">
-            <div class="pinned__bignum wordmark" aria-hidden="true">04</div>
-            <div class="pinned__pill" data-i18n="feat.04.pill">Hábito 04 · Stats</div>
-            <h3 class="pinned__title wordmark" data-i18n="feat.04.title">Stats que<br>importam.</h3>
-            <p class="pinned__desc" data-i18n="feat.04.desc">Total de sessões, tempo acumulado, sessão média e melhor streak. Atividade semanal em barras, breakdown por matéria, evolução mensal. Dados honestos pra ajustar a rota.</p>
-            <ul class="pinned__list">
-              <li data-i18n="feat.04.b1">4 cards de métrica no topo</li>
-              <li data-i18n="feat.04.b2">Atividade semanal navegável</li>
-              <li data-i18n="feat.04.b3">Breakdown por matéria com %</li>
-              <li data-i18n="feat.04.b4">Tendência mensal com gráfico de linha</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- PHONES -->
-        <div class="phone-stack" id="phoneStack">
-
-          <!-- 1: STREAK / HOME (real screenshot) -->
-          <div class="phone phone--abs phone--real is-active" data-idx="0">
-            <div class="phone__screen">
-              <img src="assets/screens/home.png" alt="BrainGym · tela inicial com streak e matérias" />
-            </div>
-          </div>
-
-          <!-- 2: CHALLENGES (real screenshot) -->
-          <div class="phone phone--abs phone--real" data-idx="1">
-            <div class="phone__screen">
-              <img src="assets/screens/challenges.png" alt="BrainGym · criação de desafio em grupo" />
-            </div>
-          </div>
-
-          <!-- 3: FEED (real screenshot) -->
-          <div class="phone phone--abs phone--real" data-idx="2">
-            <div class="phone__screen">
-              <img src="assets/screens/feed.png" alt="BrainGym · feed social com check-ins dos amigos" />
-            </div>
-          </div>
-
-          <!-- 4: STATS (real screenshot) -->
-          <div class="phone phone--abs phone--real" data-idx="3">
-            <div class="phone__screen">
-              <img src="assets/screens/stats.png" alt="BrainGym · estatísticas com atividade semanal e breakdown" />
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ HORIZONTAL: BADGES ============ -->
-    <section class="badges" id="badges">
-      <div class="badges__track" id="badgesTrack">
-
-        <div class="badges__intro">
-          <div class="section__eyebrow"><span class="num">02</span> <span data-i18n="badges.eyebrow">Coleção</span></div>
-          <h2 class="section__title wordmark" data-i18n="badges.title">
-            <span class="grad">42</span><br>
-            badges<br>
-            pra caçar.
-          </h2>
-          <p data-i18n="badges.intro">Cada milestone vira uma medalha. Algumas você desbloqueia em 3 dias, outras só depois de meses de disciplina. Arraste pra ver.</p>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#3B82F6;"></div>
-          <div class="watermark">01</div>
-          <div class="num">001 / 042</div>
-          <div class="icon icon--blue"><svg><use href="#i-spark"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.01.name">Centelha</div>
-          <div class="desc" data-i18n="badge.01.desc">Seu primeiro check-in oficial. Bem-vindo ao clube dos disciplinados.</div>
-          <div class="req" data-i18n="badge.01.req">REQ · 1 sessão</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#06B6D4;"></div>
-          <div class="watermark">07</div>
-          <div class="num">007 / 042</div>
-          <div class="icon icon--cyan"><svg><use href="#i-bolt"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.02.name">Sequência<br>de Sete.</div>
-          <div class="desc" data-i18n="badge.02.desc">7 dias seguidos sem falhar. O hábito começa a sair do papel.</div>
-          <div class="req" data-i18n="badge.02.req">REQ · streak 7 dias</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#3B82F6;"></div>
-          <div class="watermark">12</div>
-          <div class="num">012 / 042</div>
-          <div class="icon icon--blue"><svg><use href="#i-target"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.03.name">Mira<br>Cirúrgica</div>
-          <div class="desc" data-i18n="badge.03.desc">100h numa única matéria. Você não está mais aprendendo, está dominando.</div>
-          <div class="req" data-i18n="badge.03.req">REQ · 100h por matéria</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#06B6D4;"></div>
-          <div class="watermark">18</div>
-          <div class="num">018 / 042</div>
-          <div class="icon icon--cyan"><svg><use href="#i-wave"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.04.name">Maré<br>Cheia</div>
-          <div class="desc" data-i18n="badge.04.desc">30 dias seguidos. Estudar virou tão automático quanto escovar os dentes.</div>
-          <div class="req" data-i18n="badge.04.req">REQ · streak 30 dias</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#2563EB;"></div>
-          <div class="watermark">25</div>
-          <div class="num">025 / 042</div>
-          <div class="icon icon--blue-dark"><svg><use href="#i-sprout"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.05.name">Jardim<br>Próprio</div>
-          <div class="desc" data-i18n="badge.05.desc">5 matérias diferentes com streak ativo simultâneo. Polimata em formação.</div>
-          <div class="req" data-i18n="badge.05.req">REQ · 5 streaks ativos</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#3B82F6;"></div>
-          <div class="watermark">36</div>
-          <div class="num">036 / 042</div>
-          <div class="icon icon--brand"><svg><use href="#i-skull"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.06.name">Sem<br>Misericórdia</div>
-          <div class="desc" data-i18n="badge.06.desc">100 dias seguidos. Você não estuda mais, você é estudo.</div>
-          <div class="req" data-i18n="badge.06.req">REQ · streak 100 dias</div>
-        </div>
-
-        <div class="badge">
-          <div class="glow" style="background:#06B6D4;"></div>
-          <div class="watermark">42</div>
-          <div class="num">042 / 042</div>
-          <div class="icon icon--brand"><svg><use href="#i-crown"/></svg></div>
-          <div class="name wordmark" data-i18n="badge.07.name">A<br>Lenda</div>
-          <div class="desc" data-i18n="badge.07.desc">365 dias. Um ano inteiro de check-ins. Aqui não é mais sobre app, é sobre quem você virou.</div>
-          <div class="req" data-i18n="badge.07.req">REQ · streak 365 dias</div>
-        </div>
-
-        <div style="flex:0 0 auto;width:80px;"></div>
-      </div>
-    </section>
-
-    <!-- ============ COMPARISON ============ -->
-    <section class="compare" id="compare">
-      <div class="section__eyebrow"><span class="num">03</span> <span data-i18n="compare.eyebrow">O problema</span></div>
-      <h2 class="section__title wordmark" data-i18n="compare.title">
-        Você já tentou<br>
-        <span class="accent">de tudo.</span>
-      </h2>
-
-      <div class="compare__grid">
-        <div class="compare__col compare__col--before">
-          <h3 data-i18n="compare.before.label">Antes do BrainGym</h3>
-          <h4 class="wordmark" data-i18n="compare.before.title">A rotina<br>quebrava sempre.</h4>
-          <ul class="compare__list">
-            <li data-i18n="compare.before.b1">Planilha bonita na segunda, abandonada na quarta</li>
-            <li data-i18n="compare.before.b2">App de cronômetro frio, sem motivo pra abrir amanhã</li>
-            <li data-i18n="compare.before.b3">Notion lotado de templates que você nunca preencheu</li>
-            <li data-i18n="compare.before.b4">Estudou 4h ontem? Esqueceu. Sem prova, sem orgulho</li>
-            <li data-i18n="compare.before.b5">Estudar sozinho, ninguém vê, ninguém cobra</li>
-          </ul>
-        </div>
-        <div class="compare__col compare__col--after">
-          <h3 data-i18n="compare.after.label">Com BrainGym</h3>
-          <h4 class="wordmark" data-i18n="compare.after.title">A sequência<br>te puxa de volta.</h4>
-          <ul class="compare__list">
-            <li data-i18n="compare.after.b1">Streak diário com freeze pros dias ruins</li>
-            <li data-i18n="compare.after.b2">Foto + timer = comprovação visual que vira memória</li>
-            <li data-i18n="compare.after.b3">Widget no home screen lembrando do que falta hoje</li>
-            <li data-i18n="compare.after.b4">XP, nível e badges. O jogo é continuar jogando</li>
-            <li data-i18n="compare.after.b5">Feed e desafios. O time inteiro estudando junto</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ QUOTES ============ -->
-    <section class="quotes">
-      <div class="section__eyebrow"><span class="num">04</span> <span data-i18n="quotes.eyebrow">Beta fechado</span></div>
-      <h2 class="section__title wordmark" data-i18n="quotes.title">
-        O que dizem<br>
-        quem testou.
-      </h2>
-
-      <div class="quotes__grid">
-        <article class="quote">
-          <div class="stars">★★★★★</div>
-          <p data-i18n="quote.01.text">"Foram 73 dias de streak quando finalmente pedi pra largar de mim. Aí eu lembrei do badge dos 100. Voltei."</p>
-          <div class="author">
-            <div class="avatar" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">RS</div>
-            <div>
-              <div class="name">Rafa Souza</div>
-              <div class="role" data-i18n="quote.01.role">Vestibulando · MED</div>
-            </div>
-          </div>
-        </article>
-        <article class="quote">
-          <div class="stars">★★★★★</div>
-          <p data-i18n="quote.02.text">"O check-in com foto é o detalhe que muda tudo. Você não consegue mentir pro app, então para de mentir pra si mesmo."</p>
-          <div class="author">
-            <div class="avatar" style="background:linear-gradient(135deg,#3B82F6,#06B6D4);">MC</div>
-            <div>
-              <div class="name">Marina Costa</div>
-              <div class="role" data-i18n="quote.02.role">Concurso · TJ</div>
-            </div>
-          </div>
-        </article>
-        <article class="quote">
-          <div class="stars">★★★★★</div>
-          <p data-i18n="quote.03.text">"Meu grupo da faculdade inteiro migrou. Agora é o feed do BrainGym antes do Instagram quando acordo."</p>
-          <div class="author">
-            <div class="avatar" style="background:linear-gradient(135deg,#06B6D4,#60A5FA);">TP</div>
-            <div>
-              <div class="name">Tiago Pires</div>
-              <div class="role" data-i18n="quote.03.role">USP · Eng. Comp</div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ CTA ============ -->
-    <section class="cta" id="download">
-      <div class="cta__bg"></div>
-      <div class="cta__inner">
-        <div class="section__eyebrow" style="justify-content:center;">
-          <span class="num">05</span> <span data-i18n="cta.eyebrow">Disponível em breve</span>
-        </div>
-        <h2 class="cta__title wordmark">
-          <span class="line"><span data-text data-i18n="cta.title.l1">SUA STREAK</span></span>
-          <span class="line"><span data-text data-i18n="cta.title.l2">COMEÇA <span class="accent">HOJE.</span></span></span>
-        </h2>
-        <p class="cta__sub" data-i18n="cta.sub">Grátis para começar. Sem cartão. Sem anúncio. Só você, sua matéria e o app que vai te lembrar de aparecer.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <a href="#" class="btn-store">
-            <svg class="apple"><use href="#i-apple"/></svg>
-            <span class="label"><small data-i18n="hero.cta.small">Baixar na</small><span>App Store</span></span>
+      <div class="hero__copy">
+        <p class="chip reveal"><span class="dot"></span><span data-i18n="hero.badge">Em breve na App Store</span></p>
+        <h1 class="display reveal">
+          <span data-i18n="hero.title1">Cada dia</span><br />
+          <em data-i18n="hero.title2">conta.</em>
+        </h1>
+        <p class="lead reveal" data-i18n="hero.lead">Estude, faça check-in com uma foto e veja sua sequência crescer. Com amigos do lado, fica bem mais difícil parar.</p>
+        <div class="hero__cta reveal">
+          <a class="store" href="#baixar" aria-label="App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.52zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"/></svg>
+            <span><small data-i18n="hero.store_small">Em breve na</small><strong>App Store</strong></span>
           </a>
+          <a class="link-arrow" href="#como-funciona" data-i18n="hero.how">Ver como funciona</a>
         </div>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="phone phone--hero"><img src="/assets/app/01-home-rich.webp" alt="" width="660" height="1434" /></div>
+        <img class="float float--week" src="/assets/app/week-strip.webp" alt="" />
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="como-funciona">
+      <header class="section__head reveal">
+        <p class="overline" data-i18n="how.overline">Como funciona</p>
+        <h2 class="title" data-i18n="how.title">Um dia de cada vez.</h2>
+      </header>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__n">01</span>
+          <h3 data-i18n="how.s1.title">Estude</h3>
+          <p data-i18n="how.s1.body">Ligue o cronômetro ou registre depois. Vale qualquer matéria: vestibular, faculdade, idiomas, programação.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__n">02</span>
+          <h3 data-i18n="how.s2.title">Faça check-in com foto</h3>
+          <p data-i18n="how.s2.body">Uma foto da sua mesa, tirada na hora, prova que o estudo aconteceu. Nada de marcar e esquecer.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__n">03</span>
+          <h3 data-i18n="how.s3.title">Mantenha a sequência</h3>
+          <p data-i18n="how.s3.body">Um check-in por dia soma na sua sequência. O dia vira à meia-noite no seu fuso, e a gente te lembra se ele ainda estiver em aberto.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="recursos">
+      <article class="feature reveal">
+        <div class="feature__copy">
+          <p class="overline overline--gold" data-i18n="f1.overline">Sequência</p>
+          <h2 class="title" data-i18n="f1.title">Não quebre a corrente.</h2>
+          <p class="lead" data-i18n="f1.body">Quando o dia ainda está em aberto, o app mostra quanto tempo falta até a meia-noite. Uma foto e o dia está garantido.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="phone"><img src="/assets/app/02-home-atrisk.webp" alt="" loading="lazy" width="660" height="1434" /></div>
+          <img class="float float--pill" src="/assets/app/at-risk-pill.webp" alt="" loading="lazy" />
+        </div>
+      </article>
+
+      <article class="feature feature--flip reveal">
+        <div class="feature__copy">
+          <p class="overline" data-i18n="f2.overline">Desafios</p>
+          <h2 class="title" data-i18n="f2.title">Desafie sua turma.</h2>
+          <p class="lead" data-i18n="f2.body">Crie um desafio, chame os amigos com um código de 6 letras e acompanhe o ranking e a meta da semana.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="phone"><img src="/assets/app/03-challenges.webp" alt="" loading="lazy" width="660" height="1434" /></div>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature__copy">
+          <p class="overline" data-i18n="f3.overline">Feed</p>
+          <h2 class="title" data-i18n="f3.title">Ninguém estuda sozinho.</h2>
+          <p class="lead" data-i18n="f3.body">Veja quem está estudando agora, reaja aos check-ins da turma e comemore os marcos de cada um.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="phone"><img src="/assets/app/04-feed.webp" alt="" loading="lazy" width="660" height="1434" /></div>
+        </div>
+      </article>
+
+      <article class="feature feature--flip reveal">
+        <div class="feature__copy">
+          <p class="overline" data-i18n="f4.overline">Progresso</p>
+          <h2 class="title" data-i18n="f4.title">Seu progresso, dia a dia.</h2>
+          <p class="lead" data-i18n="f4.body">Mapa de estudos do ano, recordes, nível e conquistas. Tudo no seu perfil, para ver o quanto você já andou.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="phone"><img src="/assets/app/05-profile.webp" alt="" loading="lazy" width="660" height="1434" /></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PRO -->
+    <section class="section pro" id="pro">
+      <div class="pro__card reveal">
+        <div class="pro__copy">
+          <p class="chip chip--gold">BrainGym PRO</p>
+          <h2 class="title" data-i18n="pro.title">Um dia ruim não apaga sua sequência.</h2>
+          <p class="lead" data-i18n="pro.body">O PRO protege sua sequência uma vez por semana e libera tudo para quem leva o estudo a sério.</p>
+          <ul class="pro__list">
+            <li data-i18n="pro.l1">Proteção da sequência, 1 vez por semana</li>
+            <li data-i18n="pro.l2">Matérias e desafios ilimitados</li>
+            <li data-i18n="pro.l3">Desafios com até 50 pessoas</li>
+            <li data-i18n="pro.l4">Estatísticas avançadas e histórico completo de fotos</li>
+            <li data-i18n="pro.l5">Ranking global e selo PRO no perfil</li>
+          </ul>
+          <p class="fine" data-i18n="pro.fine">O app é gratuito. O PRO é opcional, com teste grátis, e pode ser cancelado quando quiser.</p>
+        </div>
+        <div class="pro__visual" aria-hidden="true">
+          <div class="phone"><img src="/assets/app/07-repairable.webp" alt="" loading="lazy" width="660" height="1434" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="section cta" id="baixar">
+      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="BrainGym"><g class="book" style="--i:0"><mask id="k24" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><rect x="23.1" y="14.8" width="8.8" height="1.1"/><rect x="23.1" y="16.7" width="8.8" height="1.1"/><rect x="23.1" y="84.4" width="8.8" height="1.1"/></g></mask><g mask="url(#k24)"><path d="M23.2 12 H31.8 A1.2 1.2 0 0 1 33 13.2 V86.8 A1.2 1.2 0 0 1 31.8 88 H23.2 A1.2 1.2 0 0 1 22 86.8 V13.2 A1.2 1.2 0 0 1 23.2 12 Z" fill="#7DC4A8"/></g></g><g class="book" style="--i:1"><mask id="k25" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><rect x="37.8" y="13.1" width="1.1" height="6.8"/><rect x="39.7" y="13.1" width="1.1" height="6.8"/><rect x="53" y="13.1" width="1.1" height="6.8"/></g></mask><g mask="url(#k25)"><path d="M36.2 12 H55.4 A1.2 1.2 0 0 1 56.6 13.2 V19.8 A1.2 1.2 0 0 1 55.4 21 H36.2 A1.2 1.2 0 0 1 35 19.8 V13.2 A1.2 1.2 0 0 1 36.2 12 Z" fill="#7DC4A8"/></g></g><g class="book" style="--i:2"><g transform="translate(62.94 27.66) rotate(-4) scale(1) translate(-64 -27.3)"><mask id="k26" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><g opacity="1"><rect x="60.8" y="19.1" width="5.4" height="1.1" rx="0.55"/><rect x="60.8" y="26.75" width="5.4" height="1.1" rx="0.55"/><rect x="60.8" y="34.4" width="5.4" height="1.1" rx="0.55"/></g></g></mask><g mask="url(#k26)"><path d="M60.6 12 H62.2 A6.4 6.4 0 0 1 68.6 18.4 V36.2 A6.4 6.4 0 0 1 62.2 42.6 H60.6 A1.2 1.2 0 0 1 59.4 41.4 V13.2 A1.2 1.2 0 0 1 60.6 12 Z" fill="#EDEFF1"/></g></g></g><g class="book" style="--i:3"><mask id="k27" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><rect x="37.8" y="45.1" width="1.1" height="6.8"/><rect x="39.7" y="45.1" width="1.1" height="6.8"/><rect x="57.4" y="45.1" width="1.1" height="6.8"/></g></mask><g mask="url(#k27)"><path d="M36.2 44 H59.8 A1.2 1.2 0 0 1 61 45.2 V51.8 A1.2 1.2 0 0 1 59.8 53 H36.2 A1.2 1.2 0 0 1 35 51.8 V45.2 A1.2 1.2 0 0 1 36.2 44 Z" fill="#7DC4A8"/></g></g><g class="book" style="--i:4"><mask id="k28" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><g opacity="1"><rect x="63.8" y="54.9" width="7.2" height="1.1" rx="0.55"/><rect x="63.8" y="65.75" width="7.2" height="1.1" rx="0.55"/><rect x="63.8" y="76.6" width="7.2" height="1.1" rx="0.55"/></g></g></mask><g mask="url(#k28)"><path d="M63.6 44.6 H65.8 A7.6 7.6 0 0 1 73.4 52.2 V80.4 A7.6 7.6 0 0 1 65.8 88 H63.6 A1.2 1.2 0 0 1 62.4 86.8 V45.8 A1.2 1.2 0 0 1 63.6 44.6 Z" fill="#7DC4A8"/></g></g><g class="book" style="--i:5"><mask id="k29" maskUnits="userSpaceOnUse" x="-60" y="-60" width="220" height="220"><rect x="-60" y="-60" width="220" height="220" fill="#fff"/><g fill="#000" stroke="#000" stroke-width="0" stroke-linejoin="round"><rect x="37.8" y="80.1" width="1.1" height="6.8"/><rect x="39.7" y="80.1" width="1.1" height="6.8"/><rect x="57.4" y="80.1" width="1.1" height="6.8"/></g></mask><g mask="url(#k29)"><path d="M36.2 79 H59.8 A1.2 1.2 0 0 1 61 80.2 V86.8 A1.2 1.2 0 0 1 59.8 88 H36.2 A1.2 1.2 0 0 1 35 86.8 V80.2 A1.2 1.2 0 0 1 36.2 79 Z" fill="#7DC4A8"/></g></g></svg>
+      <h2 class="display display--md reveal">
+        <span data-i18n="cta.title1">Comece hoje.</span><br />
+        <em data-i18n="cta.title2">Amanhã já conta.</em>
+      </h2>
+      <p class="lead reveal" data-i18n="cta.body">O BrainGym chega em breve para iPhone.</p>
+      <div class="reveal">
+        <span class="store store--static" aria-label="App Store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.52zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"/></svg>
+          <span><small data-i18n="hero.store_small">Em breve na</small><strong>App Store</strong></span>
+        </span>
       </div>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <div class="footer__meta">
-      <div class="footer__links">
-        <a href="https://x.com/braingymapp" target="_blank" rel="noopener" aria-label="BrainGym no X" class="footer__social">
-          <svg width="14" height="14"><use href="#i-x"/></svg>
-        </a>
-        <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
-        <a href="terms.html" data-i18n="footer.terms">Termos</a>
-        <a href="mailto:orbitatech.adm@outlook.com" data-i18n="footer.contact">Contato</a>
-      </div>
-      <div><span data-i18n="footer.made">Feito no Brasil</span> · <span id="year"></span></div>
-    </div>
-    <div class="footer__bottom">
-      <span data-i18n="footer.tagline">Todo dia importa. Cada dia conta.</span>
-    </div>
+    <a class="brand brand--small" href="/">
+      <img src="/assets/brand/symbol.svg" alt="" width="26" height="26" />
+      <span>BrainGym</span>
+    </a>
+    <nav class="footer__links">
+      <a href="/privacy" data-i18n="footer.privacy">Privacidade</a>
+      <a href="/terms" data-i18n="footer.terms">Termos de Uso</a>
+      <a href="mailto:orbitatech.adm@outlook.com" data-i18n="footer.contact">Contato</a>
+    </nav>
+    <p class="footer__meta"><span data-i18n="footer.made">Feito no Brasil</span> · <span id="year"></span></p>
   </footer>
 
-  <script src="assets/vendor/gsap.min.js" defer></script>
-  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="assets/vendor/lenis.min.js" defer></script>
-  <script src="script.js?v=10" defer></script>
+  <script src="/script.js?v=20" defer></script>
 </body>
 </html>

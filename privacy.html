@@ -3,30 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#0B0D10" />
   <title>Política de Privacidade · BrainGym</title>
   <meta name="description" content="Como o BrainGym coleta, usa, compartilha e protege seus dados pessoais." />
   <meta name="robots" content="index, follow" />
 
-  <link rel="icon" type="image/png" href="assets/brand-logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=20" />
 </head>
 <body class="legal-page">
-  <div class="ambient" aria-hidden="true"></div>
-
+  
   <header class="nav" data-nav>
-    <a class="nav__brand" href="index.html">
-      <img src="assets/brand-logo.png" alt="BrainGym" />
-      <span class="wordmark">BrainGym</span>
+    <a class="brand" href="/" aria-label="BrainGym">
+      <img src="/assets/brand/symbol.svg" alt="" width="34" height="34" />
+      <span>BrainGym</span>
     </a>
     <nav class="nav__links">
-      <a href="index.html">Início</a>
-      <a href="terms.html" data-legal-alt>Termos de Uso</a>
+      <a href="/">Início</a>
+      <a href="/terms" data-legal-alt>Termos de Uso</a>
     </nav>
-    <div class="lang-toggle" role="group" aria-label="Idioma">
+    <div class="lang" role="group" aria-label="Idioma">
       <button type="button" data-legal-lang="pt" class="is-active">PT</button>
       <span aria-hidden="true">·</span>
       <button type="button" data-legal-lang="en">EN</button>
@@ -118,7 +118,7 @@
       <h2>8. Retenção e exclusão</h2>
       <p>Mantemos seus dados enquanto sua conta existir. Você pode excluir sua conta a qualquer momento pelo próprio app, em <strong>Ajustes → Excluir conta</strong>.</p>
       <p>A exclusão remove seu perfil, suas sessões de estudo, suas fotos de check-in, seu conteúdo no feed e seu progresso de gamificação. O processo é concluído em até 30 dias. Podemos reter, por prazo maior e de forma segregada, registros estritamente necessários ao cumprimento de obrigação legal, ao exercício regular de direitos ou em formato agregado e anonimizado (que não permite identificá-lo).</p>
-      <p>O cancelamento da assinatura é feito na App Store e não exclui sua conta; da mesma forma, excluir a conta não cancela automaticamente uma assinatura ativa. Veja a seção correspondente nos <a href="terms.html">Termos de Uso</a>.</p>
+      <p>O cancelamento da assinatura é feito na App Store e não exclui sua conta; da mesma forma, excluir a conta não cancela automaticamente uma assinatura ativa. Veja a seção correspondente nos <a href="/terms">Termos de Uso</a>.</p>
 
       <h2>9. Seus direitos</h2>
       <p>Nos termos da LGPD e do GDPR, você pode solicitar a qualquer momento:</p>
@@ -232,7 +232,7 @@
       <h2>8. Retention and deletion</h2>
       <p>We keep your data for as long as your account exists. You can delete your account at any time from the app, under <strong>Settings → Delete account</strong>.</p>
       <p>Deletion removes your profile, your study sessions, your check-in photos, your feed content and your gamification progress. The process completes within 30 days. We may retain, for longer and in segregated form, records strictly necessary to comply with a legal obligation, to exercise rights in legal proceedings, or in aggregated and anonymised form (which cannot identify you).</p>
-      <p>Cancelling your subscription is done through the App Store and does not delete your account; likewise, deleting your account does not automatically cancel an active subscription. See the corresponding section in the <a href="terms.html">Terms of Use</a>.</p>
+      <p>Cancelling your subscription is done through the App Store and does not delete your account; likewise, deleting your account does not automatically cancel an active subscription. See the corresponding section in the <a href="/terms">Terms of Use</a>.</p>
 
       <h2>9. Your rights</h2>
       <p>Under the LGPD and the GDPR you may request at any time:</p>
@@ -265,17 +265,18 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__meta">
-      <div class="footer__links">
-        <a href="index.html">BrainGym</a>
-        <a href="privacy.html">Privacidade</a>
-        <a href="terms.html">Termos</a>
-        <a href="mailto:orbitatech.adm@outlook.com">Contato</a>
-      </div>
-      <div><span>Feito no Brasil</span> · <span id="year"></span></div>
-    </div>
+    <a class="brand brand--small" href="/">
+      <img src="/assets/brand/symbol.svg" alt="" width="26" height="26" />
+      <span>BrainGym</span>
+    </a>
+    <nav class="footer__links">
+      <a href="/privacy">Privacidade</a>
+      <a href="/terms">Termos</a>
+      <a href="mailto:orbitatech.adm@outlook.com">Contato</a>
+    </nav>
+    <p class="footer__meta"><span>Feito no Brasil</span> · <span id="year"></span></p>
   </footer>
 
-  <script src="legal.js?v=1" defer></script>
+  <script src="/legal.js?v=1" defer></script>
 </body>
 </html>
