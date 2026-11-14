@@ -25,7 +25,7 @@
     'nav.features': 'Features',
     'nav.pro': 'PRO',
     'nav.download': 'Get the app',
-    'open.intro': 'One book a day.',
+    'open.intro': 'Every day counts.',
     'open.hint': 'Scroll to build it',
     'hero.badge': 'Coming soon to the App Store',
     'hero.title1': 'Every day',
