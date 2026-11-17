@@ -27,11 +27,11 @@
     'nav.download': 'Get the app',
     'open.intro': 'Every day counts.',
     'open.hint': 'Scroll to build it',
-    'hero.badge': 'Coming soon to the App Store',
+    'hero.badge': 'Now on the App Store',
     'hero.title1': 'Every day',
     'hero.title2': 'counts.',
     'hero.lead': 'Study, check in with a photo and watch your streak grow. With friends alongside, it gets a lot harder to stop.',
-    'hero.store_small': 'Coming soon on the',
+    'hero.store_small': 'Download on the',
     'hero.how': 'See how it works',
     'how.overline': 'How it works',
     'how.title': 'One day at a time.',
@@ -65,7 +65,7 @@
     'pro.fine': 'The app is free. PRO is optional, comes with a free trial and can be cancelled anytime.',
     'cta.title1': 'Start today.',
     'cta.title2': 'Tomorrow already counts.',
-    'cta.body': 'BrainGym is coming soon to iPhone.',
+    'cta.body': 'BrainGym is on the App Store. Free to download on iPhone.',
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms of Use',
     'footer.contact': 'Contact',
@@ -81,6 +81,10 @@
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const text = dict[el.dataset.i18n];
       if (text) el.textContent = text;
+    });
+    // The store buttons are links: their accessible name follows the language too.
+    document.querySelectorAll('[data-store]').forEach((el) => {
+      el.setAttribute('aria-label', lang === 'en' ? 'Download on the App Store' : 'Baixar na App Store');
     });
     document.querySelectorAll('[data-lang]').forEach((btn) => btn.classList.toggle('is-active', btn.dataset.lang === lang));
     root.lang = lang === 'en' ? 'en' : 'pt-BR';

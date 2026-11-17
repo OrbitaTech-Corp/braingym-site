@@ -97,7 +97,6 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .store span { display: flex; flex-direction: column; line-height: 1.05; }
 .store small { font: 500 11px/1.2 var(--sans); opacity: .7; }
 .store strong { font: 600 19px/1.1 var(--sans); letter-spacing: -0.3px; }
-.store--static { cursor: default; }
 
 .link-arrow {
   display: inline-flex; align-items: center; gap: 8px;
