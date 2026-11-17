@@ -1,0 +1,39 @@
+# Publishes the site to Vercel production on every push to main.
+#
+# The Vercel project cannot be connected to this repository directly: the
+# Hobby plan refuses private repositories owned by an organization. So the
+# deploy runs here with the Vercel CLI instead.
+#
+# Needs one repository secret, VERCEL_TOKEN (vercel.com/account/tokens).
+# The two ids below are not secrets; they are the ones in .vercel/project.json.
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  VERCEL_ORG_ID: team_udtq5P74zdbFoLlYDRWSFUw4
+  VERCEL_PROJECT_ID: prj_Vzl6RrublQ8b74DnVzIvRAq7L2Ml
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Deploy
+        run: npx --yes vercel@65 deploy --prod --yes --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
