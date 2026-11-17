@@ -5,7 +5,27 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/d/:code",
+      "destination": "https://us-central1-brain-gym-4eb78.cloudfunctions.net/invitePage?code=:code"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["4Q8MSWZ774.app.braingym.ios"],
+        "components": [
+          { "/": "/d/*", "comment": "Challenge invite links: open the challenge in the app." }
+        ]
+      }
+    ]
+  }
+}
